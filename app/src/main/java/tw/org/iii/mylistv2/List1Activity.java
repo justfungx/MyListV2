@@ -1,5 +1,6 @@
 package tw.org.iii.mylistv2;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class List1Activity extends AppCompatActivity {
         list1.setAdapter(adapter);
 
     }
-    public  class MyAdapter extends BaseAdapter{
+    public  class MyAdapter extends BaseAdapter {
         private LayoutInflater inflater;
 
         public MyAdapter() {
@@ -54,12 +55,21 @@ public class List1Activity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView == null){
-                convertView = inflater.inflate(R.layout.layout_itemv1,parent,false);
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.layout_itemv1, parent, false);
             }
+
             TextView title = (TextView) convertView.findViewById(R.id.itemv1_title);
+            if (position % 2 == 0) {
+                convertView.setBackgroundColor(Color.YELLOW);
+                title.setTextColor(Color.BLUE);
+            } else {
+                convertView.setBackgroundColor(Color.GRAY);
+                title.setTextColor(Color.RED);
+            }
             title.setText(dataset[position]);
 
             return convertView;
+        }
     }
 }
